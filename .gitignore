@@ -1,0 +1,25 @@
+# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+*.code-workspace
+
+# User-specific files
+*Cari_huruf_asc.vcxproj.filters
+*Cari_huruf_asc.vcxproj.user
+*Cari_huruf_asc.vcxproj
+
+# User-specific folders
+Debug/
+
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
+
+# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode
