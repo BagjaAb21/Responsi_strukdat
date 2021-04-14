@@ -1,79 +1,116 @@
 #include <iostream>
-#include <string>
+#include <conio.h>
 
 using namespace std;
 
 int main()
 {
-	string kata;
-	int i, j, k;
+	// deklarasi array sebanyak 5 angka
+	int nilai[50];
+	int data;
+	int i;
 
-	cout << "Input kata : ";
-	cin >> kata;
-	cout << endl;
+	cout << "Input banyak NILAI : ";
+	cin >> data;
 
-
-	cout  << endl;
-	cout << "susunan huruf : ";
-	for (i = 0; i < kata.length(); i++)
+	cout << "Masukkan nilai yang akan di urutkan  \n";
+	for (i = 0; i < data; i++)
 	{
-		cout << kata[i] << ' ';
+		cout << "angka [" << i << "] = ";
+		cin >> nilai[i];
+	}
+
+	// menampilkan nilai sebelum diurutkan
+	cout << "Sebelum diurutkan : ";
+	for (int i = 0; i < data; i++)
+	{
+		cout << nilai[i] << ' ';
 	}
 	cout << endl;
-	cout  << endl;
 
-	cout << "input huruf yang ingin dicari : ";
-	char huruf;
-	cin >> huruf;
-	cout << endl;
+	// --------------------------------------------------- pengurutan nilai ---------------------------------------------
+	int jmin;
 
-	int hitung = 0;
-	int l[50];
-	for (i = 0; i < kata.length(); i++)
+	int temp;
+
+	// uj disini sebagai pivot nya
+	int uj = data - 1 ;
+	for (int j = 0; j < data; j++)
 	{
-		if (kata[i] == huruf)
+		jmin = 0;
+		for (int k = 1; k <= uj; k++)
 		{
-			hitung++;
-			l[hitung - 1] = i;
-		}
-	}
-
-	cout << "huruf " << huruf << " ditemukan sebanyak " << hitung << " kali," << endl;
-	cout << "yaitu pada huruf ke : ";
-
-	for (i = 0; i < hitung; i++)
-	{
-		cout << l[i] + 1 << "\t ";
-	}
-	cout << endl;
-	cout  << endl;
-
-
-	// ngurutin huruf
-	int m, temp, u = 0;
-
-	for (j = 0; j < kata.length(); j++)
-	{
-		m = kata.length() - 1;
-		for (k = u; k <= kata.length() - 2; k++)
-		{
-			if (kata[k] < kata[m])
+			// intinya ini adalah pengkondisian untuk menentukan angka terkecilnya
+			if (nilai[k] < nilai[jmin])
 			{
-				m = k;
+				jmin = k;
 			}
 		}
-		temp = kata[u];
-		kata[u] = kata[m];
-		kata[m] = temp;
-		u++;
+		// ini untuk pertukarannya, sesuai penjelasan variabel temp
+		temp = nilai[uj];
+		nilai[uj] = nilai[jmin];
+		nilai[jmin] = temp;
+		uj--;
+
+		/*cout << "hasil  proses ke-" << j + 1 << " = ";
+		for (int k = 0; k < data; k++)
+		{
+			cout << nilai[k] << " ";
+		} */
+		cout << endl;
 	}
-	cout << "urutan huruf : ";
-	for (i = 0; i < kata.length(); i++)
+
+	// menampilkan nilai setelah diurutkan
+	cout << "Setelah diurutkan : ";
+	for (int i = 0; i < data; i++)
 	{
-		cout << kata[i] << ' ';
+		cout << nilai[i] << ' ';
 	}
-	cout << endl;
-	cout  << endl;
+	cout << endl << endl;
+
+
+	cout << "Nilai Yang dicari  :";
+	int cari;
+	cin >> cari;
+
+	int left = 0, right = data - 1, mid;
+	bool ketemu = 0;
+
+	while (true)
+	{
+		mid = (left + right) / 2;
+
+		if (nilai[mid] == cari)
+		{
+			ketemu = 1;
+			break;
+		}
+		else if (nilai[mid] < cari)
+		{
+			right = mid - 1;
+		}
+		else if (left > right)
+		{
+			break;
+		}
+		else
+		{
+			left = mid + 1;
+		}
+	}
+
+	if (ketemu == 1)
+	{
+		cout << "NILAI " << cari << " YANG DICARI ADA DALAM ARRAY" << endl;
+	}
+	else
+	{
+		cout << "NILAI " << cari << " YANG DICARI TIDAK ADA DALAM ARRAY" << endl;
+	}
+
+	cout << "BINARY SEARCH SELESAI" << endl;
+
+	int _getch();
 
 	return 0;
 }
